@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Beyond Engineering — Discover Your Future</title>
+<style>
+:root{--bg:#f7f8fc;--card:#fff;--tx:#1b1f3a;--mu:#5d6385;--ac:#5b4bdb;--ac2:#14b8a6;--bd:#e2e5f2;--ok:#0f9d58;--wn:#d98a00;--nf:#c2410c;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10122a;--card:#1a1d3b;--tx:#eef0ff;--mu:#a3a9d1;--ac:#8f82ff;--ac2:#2dd4bf;--bd:#2c3060;--ok:#4ade80;--wn:#fbbf24;--nf:#fb923c}}
+:root[data-theme="dark"]{--bg:#10122a;--card:#1a1d3b;--tx:#eef0ff;--mu:#a3a9d1;--ac:#8f82ff;--ac2:#2dd4bf;--bd:#2c3060;--ok:#4ade80;--wn:#fbbf24;--nf:#fb923c}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--tx);line-height:1.5}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--card);border-bottom:1px solid var(--bd);display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 16px}
+h1{font-size:1.05rem;margin:0;flex:1 1 220px;background:linear-gradient(90deg,var(--ac),var(--ac2));-webkit-background-clip:text;background-clip:text;color:transparent}
+nav{display:flex;gap:6px;flex-wrap:wrap}
+button,select,input{font:inherit;color:var(--tx)}
+.tab,.btn{border:1px solid var(--bd);background:var(--card);padding:7px 12px;border-radius:999px;cursor:pointer;transition:.2s}
+.tab:hover,.btn:hover{transform:translateY(-2px);border-color:var(--ac)}
+.tab.on,.btn.p{background:var(--ac);color:#fff;border-color:var(--ac)}
+main{max-width:1000px;margin:0 auto;padding:16px}
+.hero{padding:26px 18px;border-radius:18px;background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff;margin-bottom:16px;animation:fi .6s}
+.hero h2{margin:0 0 6px;font-size:1.5rem}.hero p{margin:0;opacity:.95}
+@keyframes fi{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.warn{background:color-mix(in srgb,var(--wn) 15%,var(--card));border:1px solid var(--wn);border-radius:12px;padding:10px 12px;font-size:.88rem;margin-bottom:14px}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.row input,.row select,.f select{padding:8px 10px;border:1px solid var(--bd);border-radius:10px;background:var(--card);flex:1 1 150px;min-width:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:14px;animation:fi .4s both;transition:.2s}
+.card:hover{transform:translateY(-3px);box-shadow:0 8px 22px #0002}
+.card h3{margin:0 0 4px;font-size:1.02rem}.mu{color:var(--mu);font-size:.86rem}
+.pill{display:inline-block;font-size:.72rem;padding:2px 8px;border-radius:999px;border:1px solid var(--bd);margin:0 4px 4px 0}
+.ok{color:var(--ok);border-color:var(--ok)}.wn{color:var(--wn);border-color:var(--wn)}.nf{color:var(--nf);border-color:var(--nf)}
+.acts{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.acts .btn{padding:5px 10px;font-size:.82rem}
+.f{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-bottom:12px}
+label{font-size:.85rem;color:var(--mu);display:block;margin-bottom:3px}.f select{width:100%}
+.wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;min-width:560px;background:var(--card)}
+td,th{border:1px solid var(--bd);padding:8px;text-align:left;vertical-align:top;font-size:.88rem}th{background:color-mix(in srgb,var(--ac) 12%,var(--card))}
+.bar{height:8px;border-radius:6px;background:var(--bd);overflow:hidden;margin-top:4px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--ac),var(--ac2));transition:width .6s}
+.step{display:flex;gap:10px;margin:8px 0;padding:8px 10px;border-left:4px solid var(--ac);background:var(--card);border-radius:8px}
+.step.d{border-color:var(--ok);opacity:.7}
+dialog{border:1px solid var(--bd);border-radius:16px;background:var(--card);color:var(--tx);max-width:640px;width:92%;max-height:86vh}
+dialog::backdrop{background:#0008}a{color:var(--ac)}
+</style></head><body>
+<header><h1>Beyond Engineering — Discover Your Future</h1>
+<nav id="nav"></nav><button class="btn" id="th" aria-label="Toggle light or dark mode">🌓</button></header>
+<main id="m"></main>
+<dialog id="dlg"></dialog>
+<script>
+const LV=["Studying Classes 8–10","Completed Class 10","Studying Class 11","Completed Class 12","Diploma student/graduate","Undergraduate student","Completed bachelor's degree","Completed postgraduate degree"];
+const LN=[0,1,2,3,3.5,4,5,6];/* rank of education reached */
+const ST=["Science PCM","Science PCB","PCMB","Commerce","Arts/Humanities","Computer Science/vocational","Diploma/technical","Other"];
+const CATS=["Technology","Sports","Esports & Gaming","Events","Law","Government","Creative & Media","Business & Finance","Healthcare","Other"];
+/* name,cat,desc,reqRank,streams|null,exams,duration,cost,salary,sector,competition(1-5),stability(1-5),source,steps[[rank,text]],karnataka */
+const C=[
+["Software Developer","Technology","Builds apps, websites and systems.",3,null,"Entrance varies: KCET/JEE for B.E./B.Tech; BCA/B.Sc. usually merit or college test","3–4 yrs degree (or diploma + self-learning)","Varies by institution — check college","Not verified","Mostly private; some PSU/govt",3,3,"https://kea.kar.nic.in",[[3,"Finish Class 12 (any stream can apply for BCA/B.Sc.; B.E. rules differ)"],[5,"Complete BCA / B.Sc. CS / B.E. or equivalent"],[5,"Build projects and a portfolio; do internships"]],1],
+["Game Developer","Esports & Gaming","Designs and programs video games.",3,null,"Institute-specific tests/portfolio","1–4 yrs diploma/degree","Varies by institution","Not verified","Mostly private studios",4,2,"https://www.nasscom.in",[[3,"Finish Class 12"],[4,"Learn Unity/Unreal, art or programming"],[5,"Publish small games; join internships/game jams"]],0],
+["Professional Esports Player","Esports & Gaming","Plays games competitively for teams and tournaments.",1,null,"No formal exam; selection by ranking and trials","Ongoing practice","Equipment and internet costs","Highly uncertain — most players earn little","Teams, sponsors, prize money",5,1,"https://www.esportsfederationofindia.com",[[1,"Keep studying — keep Class 12 and a degree as a safety net"],[2,"Build ranked/tournament record"],[3,"Plan alternative gaming-industry roles (coach, caster, tester)"]],0],
+["Sports Physiotherapist","Sports","Treats and prevents injuries in athletes.",3,["Science PCB","PCMB"],"Admission to BPT often via state/university process — verify","4.5 yrs BPT incl. internship","Varies; govt colleges cheaper","Not verified","Clubs, academies, hospitals, private",3,4,"https://www.ncahp.gov.in",[[3,"Complete Class 12 with biology (check college rules)"],[5,"BPT degree, then sports specialisation (MPT)"],[6,"Register as required and gain club/academy experience"]],1],
+["Sports Coach","Sports","Trains athletes and teams.",3,null,"Coaching diploma entry varies by institute (e.g. NSNIS Patiala)","1–2 yrs diploma/degree","Varies","Not verified","Schools, academies, govt sports bodies",3,3,"https://sportsauthorityofindia.nic.in",[[3,"Finish Class 12; play at a competitive level"],[4,"Take a recognised coaching certificate/diploma"],[5,"Assist at an academy, then lead a team"]],1],
+["Event Manager","Events","Plans and runs weddings, corporate events and festivals.",3,null,"No national exam; some institutes hold own tests","3-yr degree or 6–12 month diploma","Varies by institution","Not verified","Mostly private/self-employed",3,3,"https://www.ugc.gov.in",[[3,"Finish Class 12 (any stream)"],[4,"Event management course or BBA"],[5,"Intern with event companies; build vendor contacts"]],0],
+["Lawyer / Advocate","Law","Represents clients and gives legal advice.",3,null,"CLAT (NLUs), AILET, other university tests; state CETs vary","5 yrs integrated LLB or 3 yrs LLB after a degree","Varies widely (NLU vs others)","Not verified","Courts, firms, govt, corporates",4,3,"https://consortiumofnlus.ac.in",[[3,"Finish Class 12 in any stream"],[5,"Integrated LLB (5 yrs) or LLB after a bachelor's"],[6,"Enrol with a State Bar Council; meet Bar Council of India rules"]],1],
+["IAS / Civil Services","Government","Administrative officer for central/state governments.",5,null,"UPSC Civil Services Exam: Prelims, Mains, Interview","3-yr bachelor's + prep time","Degree fees vary; coaching optional","Govt pay matrix — see notification","Government",5,5,"https://upsc.gov.in",[[3,"Finish Class 11–12 in a suitable stream"],[5,"Complete a recognised bachelor's degree (final-year can apply per notification)"],[5,"Check latest UPSC age limit, attempts and eligibility"],[6,"Clear Prelims → Mains → Interview, then training"]],0],
+["Karnataka State Civil Services (KAS)","Government","State administrative service in Karnataka.",5,null,"KPSC exam stages — see notification","3-yr bachelor's + prep","Degree fees vary","State pay scale — see notification","State government",4,5,"https://kpsc.kar.nic.in",[[5,"Complete a recognised bachelor's degree"],[5,"Check KPSC age, domicile and language rules in the notification"],[6,"Apply and clear the KPSC stages"]],1],
+["SSC / Railway (10th-pass posts)","Government","Entry-level central government jobs.",1,null,"SSC MTS/other exams; RRB Group D — see each notification","Exam prep time","Low","Govt pay matrix — see notification","Government",5,5,"https://ssc.gov.in",[[1,"Finish Class 10"],[1,"Read the latest SSC/RRB notification for age and physical standards"],[2,"Prepare and apply online on the official site"]],0],
+["Bank Officer (IBPS PO)","Government","Probationary officer in public sector banks.",5,null,"IBPS Prelims, Mains, Interview","3-yr degree + prep","Low (degree + optional coaching)","Bank pay scale — see notification","Public sector banks",4,4,"https://ibps.in",[[5,"Complete a bachelor's in any discipline"],[5,"Check age and degree rules in the CRP notification"],[6,"Clear stages and complete bank training"]],1],
+["Defence (NDA)","Government","Officer entry into Army, Navy, Air Force after Class 12.",3,null,"NDA exam by UPSC, then SSB","3-yr training academy","Fully funded training","Per defence pay structure","Government",5,5,"https://upsc.gov.in",[[2,"Take PCM if aiming for Air Force/Navy wings (verify in notification)"],[3,"Finish Class 12; check age and physical standards"],[3,"Apply to NDA exam, then SSB interview"]],0],
+["Graphic Designer","Creative & Media","Creates visuals for brands, apps and media.",1,null,"NID DAT, UCEED, CEED, or portfolio","Diploma 1 yr / B.Des 4 yrs","Varies by institution","Not verified","Agencies, in-house, freelance",3,3,"https://www.nid.edu",[[1,"Practise design tools and build a portfolio"],[3,"Optional: B.Des / BFA after Class 12"],[4,"Freelance or intern at agencies"]],1],
+["Chartered Accountant","Business & Finance","Audits, taxes and advises on finance.",1,null,"ICAI Foundation, Intermediate, Final","~4.5–5 yrs incl. articleship","Exam fees per ICAI","Not verified","Firms, corporates, self-practice",4,4,"https://www.icai.org",[[1,"Check ICAI registration timelines after Class 10/12"],[3,"Complete Class 12 (commerce helps but verify rules)"],[5,"Clear levels and complete articleship"]],1],
+["Doctor (MBBS)","Healthcare","Diagnoses and treats patients. Regulated profession.",3,["Science PCB","PCMB"],"NEET-UG, then counselling","5.5 yrs incl. internship","Govt vs private varies greatly","Not verified","Govt and private",5,5,"https://nta.ac.in",[[3,"Class 12 with Physics, Chemistry, Biology"],[3,"Check NEET-UG eligibility on the official site"],[6,"Complete MBBS and register with the medical council"]],1],
+["Teacher / Professor","Other","Teaches in schools or colleges.",5,null,"B.Ed + TET/CTET; NET/SET for college posts","3-yr degree + 2-yr B.Ed (school)","Varies","Per govt scale or private pay","Govt and private",3,4,"https://ncte.gov.in",[[5,"Complete a bachelor's degree"],[6,"B.Ed for school teaching; master's + NET/SET for colleges"],[6,"Apply for govt or private posts"]],1],
+["Psychologist","Other","Helps people with mental-health and behaviour concerns.",3,null,"University entrance (e.g. CUET) varies; clinical roles need specific qualifications","3 yrs BA/BSc + 2 yrs master's","Varies","Not verified","Clinics, schools, NGOs, private",3,3,"https://rehabcouncil.nic.in",[[3,"Finish Class 12 (any stream for most BA/B.Sc. Psychology)"],[5,"Bachelor's in Psychology"],[6,"Master's; clinical practice may need regulated qualifications"]],1]
+];
+const $=s=>document.querySelector(s);
+let S={tab:"explore",q:"",cat:"",saved:[],cmp:[],lv:3,st:7,intr:""};
+try{S.saved=JSON.parse(localStorage.getItem("be_saved")||"[]")}catch(e){}
+function sv(){try{localStorage.setItem("be_saved",JSON.stringify(S.saved))}catch(e){}}
+function elig(c){const r=LN[S.lv],need=c[3],ok=!c[4]||c[4].includes(ST[S.st])||S.st==7;
+if(!ok)return["Check additional requirements","nf"];
+if(r>=need)return["Eligible now","ok"];return["Eligible after further study","wn"]}
+function card(i){const c=C[i],e=elig(c);return `<div class="card"><span class="pill">${c[1]}</span>${c[14]?'<span class="pill ok">Karnataka-relevant</span>':''}<span class="pill wn">Sample – unverified</span><h3>${c[0]}</h3><div class="mu">${c[2]}</div><div style="margin-top:6px"><span class="pill ${e[1]}">${e[0]}</span></div><div class="acts"><button class="btn p" onclick="show(${i})">Details &amp; roadmap</button><button class="btn" onclick="tg('saved',${i})">${S.saved.includes(i)?"★ Saved":"☆ Save"}</button><button class="btn" onclick="tg('cmp',${i})">${S.cmp.includes(i)?"✓ Comparing":"Compare"}</button></div></div>`}
+function tg(k,i){const a=S[k],p=a.indexOf(i);if(p>-1)a.splice(p,1);else{if(k=="cmp"&&a.length>=3){alert("You can compare up to 3 careers.");return}a.push(i)}sv();render()}
+function show(i){const c=C[i],r=LN[S.lv];const steps=c[13].map(s=>`<div class="step ${r>=s[0]?'d':''}"><b>${r>=s[0]?"✓":"→"}</b><span>${s[1]}</span></div>`).join("");
+$("#dlg").innerHTML=`<h2>${c[0]}</h2><span class="pill">${c[1]}</span><span class="pill wn">Sample data – not yet verified</span><p>${c[2]}</p><table><tr><th>Entrance / selection</th><td>${c[5]}</td></tr><tr><th>Duration</th><td>${c[6]}</td></tr><tr><th>Cost</th><td>${c[7]}</td></tr><tr><th>Salary</th><td>${c[8]} <span class="mu">(never guaranteed)</span></td></tr><tr><th>Sector</th><td>${c[9]}</td></tr><tr><th>Official source</th><td><a href="${c[12]}" target="_blank" rel="noopener">${c[12]}</a><div class="mu">Last checked: not yet verified. Always read the latest official notification for age limits, marks and eligibility.</div></td></tr></table><h3>Your roadmap from: ${LV[S.lv]}</h3>${steps}<div class="acts"><button class="btn p" onclick="dlg.close()">Close</button></div>`;$("#dlg").showModal()}
+function explore(){const l=C.map((c,i)=>i).filter(i=>(!S.cat||C[i][1]==S.cat)&&(C[i][0]+C[i][2]+C[i][1]).toLowerCase().includes(S.q.toLowerCase()));
+return `<div class="row"><input id="q" placeholder="Search careers…" value="${S.q}" oninput="S.q=this.value;fl()"><select onchange="S.cat=this.value;fl()"><option value="">All categories</option>${CATS.map(c=>`<option ${S.cat==c?"selected":""}>${c}</option>`).join("")}</select></div><div class="grid" id="g">${l.map(card).join("")||"<p>No careers match.</p>"}</div>`}
+function fl(){const p=S.q;const q=$("#q");render();const n=$("#q");if(n&&q){n.focus();n.setSelectionRange(p.length,p.length)}}
+function checker(){const opts=(a,k)=>a.map((x,i)=>`<option value="${i}" ${S[k]==i?"selected":""}>${x}</option>`).join("");
+const res=C.map((c,i)=>i).filter(i=>!S.intr||C[i][1]==S.intr);const order={ok:0,wn:1,nf:2};res.sort((a,b)=>order[elig(C[a])[1]]-order[elig(C[b])[1]]);
+return `<h2>What can I become after my current education?</h2><div class="f"><div><label for="a">Current education level</label><select id="a" onchange="S.lv=+this.value;render()">${opts(LV,"lv")}</select></div><div><label for="b">Stream or subjects</label><select id="b" onchange="S.st=+this.value;render()">${opts(ST,"st")}</select></div><div><label for="c">Interest area</label><select id="c" onchange="S.intr=this.value;render()"><option value="">All interests</option>${CATS.map(c=>`<option ${S.intr==c?"selected":""}>${c}</option>`).join("")}</select></div></div><p class="mu">We don't reject a career because of stream unless the career's rules need a specific subject. Confirm everything on the official notification.</p><div class="grid">${res.map(card).join("")}</div>`}
+function compare(){if(!S.cmp.length)return "<p>Pick up to 3 careers using the Compare button in Explore.</p>";
+const dots=n=>`<div class="bar"><i style="width:${n*20}%"></i></div>`;
+const rows=[["Minimum education",c=>({1:"Class 10",3:"Class 12",5:"Bachelor's degree"}[c[3]]||"Check notification")],["Eligibility / exams",c=>c[5]],["Study duration",c=>c[6]],["Estimated cost",c=>c[7]],["Salary",c=>c[8]],["Sector",c=>c[9]],["Competition",c=>dots(c[10])],["Job stability",c=>dots(c[11])],["Source",c=>`<a href="${c[12]}" target="_blank" rel="noopener">official site</a>`]];
+return `<p class="mu">No career is best for everyone — use this to see trade-offs. Bars: longer = higher.</p><div class="wrap"><table><tr><th></th>${S.cmp.map(i=>`<th>${C[i][0]}</th>`).join("")}</tr>${rows.map(r=>`<tr><th>${r[0]}</th>${S.cmp.map(i=>`<td>${r[1](C[i])}</td>`).join("")}</tr>`).join("")}</table></div>`}
+function saved(){return S.saved.length?`<div class="grid">${S.saved.map(card).join("")}</div>`:"<p>No saved careers yet. Tap ☆ Save on any career.</p>"}
+function about(){return `<h2>Career Myth Buster</h2><div class="grid"><div class="card"><h3>“Only engineering or medicine are safe.”</h3><p class="mu">Law, civil services, design, finance, sports and more all have established paths.</p></div><div class="card"><h3>“My stream decides everything.”</h3><p class="mu">Many degrees and exams accept any stream; some (like MBBS) need specific subjects.</p></div><div class="card"><h3>“Esports means a quick career.”</h3><p class="mu">Few players turn pro. Coaching, casting, testing and development are safer alternatives.</p></div></div>`}
+const TABS={explore:["Explore",explore],checker:["Eligibility Checker",checker],compare:["Compare",compare],saved:["Saved",saved],myths:["Myth Buster",about]};
+function render(){$("#nav").innerHTML=Object.keys(TABS).map(k=>`<button class="tab ${S.tab==k?"on":""}" onclick="S.tab='${k}';render()">${TABS[k][0]}${k=="saved"?" ("+S.saved.length+")":""}${k=="compare"?" ("+S.cmp.length+")":""}</button>`).join("");
+$("#m").innerHTML=(S.tab=="explore"?`<div class="hero"><h2>Discover careers beyond engineering</h2><p>Explore ${C.length} sample careers, check your eligibility, and compare paths.</p></div>`:"")+`<div class="warn">⚠️ Prototype with <b>sample data that is not yet verified</b>. Fees, salaries and dates are intentionally left general. Always check the official notification before deciding.</div>`+TABS[S.tab][1]()}
+$("#th").onclick=()=>{const d=document.documentElement,cur=d.dataset.theme||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");d.dataset.theme=cur=="dark"?"light":"dark"};
+const dlg=$("#dlg");dlg.addEventListener("click",e=>{if(e.target==dlg)dlg.close()});
+render();
+</script></body></html>
